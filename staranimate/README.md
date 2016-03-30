@@ -1,4 +1,4 @@
-# mask
+# staranimate
 名称：星光动画
 
 技术：canvas
