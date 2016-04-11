@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link href="css/reset.css" rel="stylesheet" />
+		<style>
+			.list{  
+			    width:538px;  
+			    height:198px;  
+			    overflow:hidden;  
+			    margin:50px auto;  
+			}  
+			.list ul{  
+			    width:2152px;  
+			    height:198px;  
+			    margin:0;  
+			    padding:0;  
+			}  
+			.list ul li{  
+			    float:left;  
+			    width:538px;  
+			}  
+		</style>
+	</head>
+	<body>
+		<div class="list" id = "sidle">  
+		    <ul>  
+		        <li><img src="img/beauty.png" width="538" height="198" /></li>  
+		        <li><img src="img/digital.png" width="538" height="198" /></li>  
+		        <li><img src="img/homeappliance.png" width="538" height="198" /></li>  
+		        <li><img src="img/newborn.png" width="538" height="198" /></li>  
+		    </ul>  
+		</div>  
+	<script src="js/jquery2.1.1.js"></script>
+	<script>
+		(function($){  
+		    var silde = {  
+		        init:function(){  
+		            this.auto();  
+		        },  
+		        auto:function(){  
+		            var _root = this,  
+		                $ul = $("#sidle").find("ul"),  
+		                $lis = $ul.children("li"),  
+		                width = $lis.eq(0).width();  
+		            setInterval(function(){  
+		                $ul.animate({  
+		                        'margin-left':'-'+ width +'px'  
+		                    },  
+		                    'slow',  
+		                    function(){  
+		                        //此处保证能循环轮播  
+		                        //将已经轮播过的节点的第一张图片添加到末尾的位置  
+		                        //再将margin-left重置为0px;  
+		                        //这样就能一直的循环下去.  
+		                        $ul.css({'margin-left':0}).  
+		                            children('li').  
+		                            last().  
+		                            after(  
+		                                $ul.children('li').first()  
+		                            );  
+		                    });  
+		                },2000  
+		            );  
+		        }  
+		    };  
+		    $(function(){silde.init();})  
+		})(jQuery);
+	</script>
+	</body>
+</html>
