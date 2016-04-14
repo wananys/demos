@@ -1,5 +1,5 @@
-$(function(){
-	hljs.initHighlightingOnLoad();
+window.onload = function(){
+//	hljs.initHighlightingOnLoad();
 			
 			var coverGuide = function(cover, target) {
 				var body = document.body, doc = document.documentElement;
@@ -63,4 +63,4 @@ $(function(){
 				}
 				coverGuide(elCover, arrElTarget[index]);
 			};
-});
+};
