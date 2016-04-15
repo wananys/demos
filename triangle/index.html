@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>css实现三角形</title>
+<style>
+.triangle1{
+	width:50px; height:50px; border:50px solid; border-color:#ff3300 #0000ff #339966 #00ff00;
+}
+.triangle2{
+	width:50px; height:50px; border:50px solid; border-color:#ff3300 #ffffff #ffffff #ffffff;
+}
+.triangle3{
+	width:0; height:0; border:50px solid; border-color:#ff3300 #ffffff #ffffff #ffffff;
+}
+.triangle4{
+	width:0; height:0; border-width:50px 25px; border-style:solid; border-color:#ff3300 #ffffff #ffffff #ffffff;
+}
+.triangle5{
+	width:0; height:0; border-width:20px 10px; border-style:solid; border-color:#ff3300 #ff3300 #ffffff #ffffff;
+}
+.test1{width:300px; padding:30px 20px; margin-left:60px; background:#beceeb; position:relative;}
+.test1 span{width:0; height:0; font-size:0; overflow:hidden; position:absolute;}
+.test1 span.bot{
+    border-width:20px; 
+    border-style:solid; 
+    border-color:#ffffff #beceeb #beceeb #ffffff; 
+    left:-40px; 
+    top:40px;
+}
+.test1 span.top{
+    border-width:10px 20px; 
+    border-style:dashed solid solid dashed; 
+    border-color:transparent #ffffff #ffffff transparent; 
+    left:-40px; 
+    top:60px;
+}
+
+.test2{width:300px; padding:30px 20px; border:5px solid #beceeb; position:relative;}
+.test2 span{width:0; height:0; font-size:0; overflow:hidden; position:absolute;}
+.test2 span.bot{
+    border-width:20px; 
+    border-style:solid dashed dashed; 
+    border-color:#beceeb transparent transparent; 
+    left:80px; 
+    bottom:-40px;
+}
+.test2 span.top{
+    border-width:20px; 
+    border-style:solid dashed dashed; 
+    border-color:#ffffff transparent transparent; 
+    left:80px; 
+    bottom:-33px;
+}   
+
+.test{
+    width:300px;
+    padding:80px 20px;
+    margin-left:100px;
+    background:#beceeb;
+    -webkit-border-top-left-radius:220px 120px;
+    -webkit-border-top-right-radius:220px 120px;
+    -webkit-border-bottom-right-radius:220px 120px;
+    -webkit-border-bottom-left-radius:220px 120px;
+    -moz-border-radius:220px / 120px;
+    border-radius:220px / 120px;
+    position:relative;
+}
+.test span{width:0; height:0; font-size:0; background:#beceeb; overflow:hidden; position:absolute;}
+.test span.bot{
+    width:30px;
+    height:30px;
+    -moz-border-radius:30px;
+    -webkit-border-radius:30px;
+    border-radius:30px;
+    left:10px;
+    bottom:-20px;
+}
+.test span.top{
+    width:15px;
+    height:15px;
+    -moz-border-radius:15px;
+    -webkit-border-radius:15px;
+    border-radius:15px;
+    left:0px;
+    bottom:-40px;
+}
+</style>
+</head>
+<body>
+	<h3>css三角的实现-边框法</h3>
+	<div class="triangle1"></div>
+	
+	<div class="triangle2"></div>
+	
+	<div class="triangle3"></div>
+
+	<div class="triangle4"></div>
+
+	<div class="triangle5"></div>
+	
+	<h3>气泡</h3>
+	<div class="test1">
+	    <span class="bot"></span>
+	    <span class="top"></span>
+	    CSS “边框法”实现气泡对话框效果一
+	</div>
+	<br>
+	
+	<div class="test2">
+	    <span class="bot"></span>
+	    <span class="top"></span>
+	    CSS “边框法”实现气泡对话框效果二
+	</div>
+	<br>
+		
+	<div class="test">
+	    <span class="bot"></span>
+	    <span class="top"></span>
+	    CSS3 border-radius实现气泡对话框效果 
+	</div>
+	<br/>
+	<br/>
+	<br/>
+</body>
+</html>
