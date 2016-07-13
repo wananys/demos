@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>abc_bac_cab布局</title>
+		<style>
+			*{margin: 0;padding: 0;}
+			body{font: 14px/1.75 arial;}
+			.main{
+				display: -webkit-flex;
+				width: 100%;
+				height: 100%;
+			}
+			.main div{height: 150px;}
+			.main .aDiv{width: 180px;background: red;}
+			.main .bDiv{width: 600px;background: yellow;}
+			.main .cDiv{width: 180px;background: green;}
+			
+			.main.bac{
+				flex-direction: row-reverse;
+			}
+			.main.bac .bDiv{
+				width: 100%;
+			}
+			
+			.main.cab{position: relative;padding-left: 180px;}
+			.main.cab .cDiv{
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<p>说明：该html结构不变，只是增加了class，可通过js控制</p>
+		<p>abc布局结构</p>
+		<div class="main">
+			<div class="aDiv"></div>
+			<div class="bDiv"></div>
+			<div class="cDiv"></div>
+		</div>
+		<p>bac布局结构</p>
+		<div class="main bac">
+			<div class="aDiv"></div>
+			<div class="bDiv"></div>
+			<div class="cDiv"></div>
+		</div>
+		<p>cab布局结构</p>
+		<div class="main cab">
+			<div class="aDiv"></div>
+			<div class="bDiv"></div>
+			<div class="cDiv"></div>
+		</div>
+	</body>
+</html>
