@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>js原型解析</title>
+	</head>
+	<body>
+	</body>
+	<script>
+		//constructor属性（始终指向创建当前对象的构造函数）
+//		var arr = [1,2,3];
+//		console.log(arr.constructor);
+//		var a = {};
+//		console.log(a.constructor);
+//		var bool = false;
+//		console.log(bool.constructor);
+//		var name = "hello";
+//		console.log(name.constructor);
+//		var sayName = function(){}
+//		console.log(sayName.constructor);
+//		
+//		//通过构造函数创建instance
+//		function A(){}
+//		var a= new A();
+//		console.log(a.constructor);
+		
+		//prototype
+		//prototype是每个函数对象都具有的属性，被称为原型对象。而_proto_属性才是每个对象才有的属性。
+		//一旦原型对象被赋予属性或方法，那么由相应的构造函数创建的实例会继承prototype上的属性和方法。
+		
+//		function A(){}
+//		var a = new A();
+//		
+//		A.prototype.name = "xl";
+//		A.prototype.sayName = function(){
+//			console.log(this.name);
+//		}
+//		
+//		console.log(a.name);
+//		a.sayName();
+		//constructor属性和prototype属性
+		//每个函数都有prototype属性,而这个prototype的constructor属性会指向这个函数。
+//		function Person(name){
+//			this.name = name;
+//		}
+//		Person.prototype.sayName = function(){
+//			console.log(this.name);
+//		}
+//		var person = new Person('xl');
+//		console.log(person.constructor);
+//		console.log(Person.prototype.constructor);
+//		console.log(Person.constructor);
+		//当我们重写这个Person.prototype属性，那么constructor属性会发生变化
+//		Person.prototype = {
+//			sayName :function(){
+//				console.log(this.name);
+//			}
+//		};
+//		var personTwo = new Person('XL');
+//		console.log(Person.constructor);
+//		console.log(personTwo.constructor);
+//		console.log(person.constructor == Person);  //true
+//		console.log(personTwo.constructor == Person);//false  
+		
+		//prototype和_proto_
+		function Person(name){
+			this.name = name;
+		}
+		Person.prototype.sayName = function(){
+			console.log(this.name);
+		}
+		var personOne = new Person("a");
+		var personTwo = new Person('b');
+		
+		personOne.sayName();
+		personTwo.sayName();
+		
+		console.log(personOne.__proto__);
+		console.log(personOne.__proto__==Person.prototype);
+		console.log(personTwo.__proto__==Person.prototype);
+		
+		console.log(personOne.constructor==Person); //true
+	    console.log(personTwo.constructor==Person); //true
+	    console.log(Person.prototype.constructor==Person); //true
+	    
+	    console.log(Person.prototype.constructor);
+	    console.log(Person.constructor); //function Function(){}
+	    console.log(Person.__proto__.__proto__); // Object{} 
+    
+	</script>
+</html>
