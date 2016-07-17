@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{margin: 0;padding: 0;}
+			#ele{
+				width: 500px;
+				height: 50px;
+				margin: 50px 100px;
+				padding: 20px;
+				border: 1px solid red;
+				overflow: auto;
+				background: #F0F0F0;
+			}
+			body{
+				font: 14px/1.75 arial;
+				/*padding: 20px;
+				margin:10px;*/
+			}
+			.box{padding: 50px;}
+		</style>
+	</head>
+	<body>
+		<!--<div style="padding: 0px;margin: 10px;">-->
+		<div id="ele">
+			这个div<br>
+			width＝500px,<br>
+			height=50px,<br>
+			margin:50px 100px;<br>
+			padding:20px;<br>
+			border:1px。<br>
+			console.log("div的width(只有通过style写在元素上才能获取)："+obj.style.width); //''
+			
+			
+			
+			
+		</div>
+		<!--</div>-->
+		<p class="box">
+			div的offsetHeight(height+padding+border): 92 <br>
+			div的offsetWeight(width+padding+border): 542 <br>
+			div的offsetLeft（元素的x坐标，相对于文档的左边距离）: 100<br>
+			div的offsetTop（元素的y坐标，相对于文档的上边距离）: 50<br>
+			div的offsetParent（指定属性所对应的父元素）: BODY<br>
+			
+			console.log("div的clientHeight（height+padding）: 90<br>
+			div的clientWidth（height+padding）: 540<br>
+			div的clientTop（相当于边框border）: 1<br>
+			div的clientLeft（相当于边框border）: 1<br>
+			
+			div的scrollWidth（内容区width＋内边距padding＋溢出的内容）: 540<br>
+			div的scrollHeight（内容区height＋内边距padding＋溢出的内容）: 136<br>
+			div的scrollTop(指定元素滚动条的位置，通过设置它们让元素中内容滚动，必须出现滚动条才有用): 0<br>
+			div的scrollLeft(指定元素滚动条的位置，通过设置它们让元素中内容滚动，必须出现滚动条才有用): 0<br>
+			
+			
+			
+			
+			
+			div的scrollWidth（内容区width＋内边距padding＋溢出的内容）: 540<br>
+			div的scrollHeight（内容区height＋内边距padding＋溢出的内容）: 136<br>
+			div的scrollTop(指定元素滚动条的位置，通过设置它们让元素中内容滚动，必须出现滚动条才有用): 0<br>
+			div的scrollLeft(指定元素滚动条的位置，通过设置它们让元素中内容滚动，必须出现滚动条才有用): 0<br>
+			
+			div的scrollWidth（内容区width＋内边距padding＋溢出的内容）: 540<br>
+			div的scrollHeight（内容区height＋内边距padding＋溢出的内容）: 136<br>
+			div的scrollTop(指定元素滚动条的位置，通过设置它们让元素中内容滚动，必须出现滚动条才有用): 0<br>
+			div的scrollLeft(指定元素滚动条的位置，通过设置它们让元素中内容滚动，必须出现滚动条才有用): 0<br>
+			div的scrollWidth（内容区width＋内边距padding＋溢出的内容）: 540<br>
+			div的scrollHeight（内容区height＋内边距padding＋溢出的内容）: 136<br>
+			div的scrollTop(指定元素滚动条的位置，通过设置它们让元素中内容滚动，必须出现滚动条才有用): 0<br>
+			div的scrollLeft(指定元素滚动条的位置，通过设置它们让元素中内容滚动，必须出现滚动条才有用): 0<br>
+			div的scrollWidth（内容区width＋内边距padding＋溢出的内容）: 540<br>
+			div的scrollHeight（内容区height＋内边距padding＋溢出的内容）: 136<br>
+			div的scrollTop(指定元素滚动条的位置，通过设置它们让元素中内容滚动，必须出现滚动条才有用): 0<br>
+			div的scrollLeft(指定元素滚动条的位置，通过设置它们让元素中内容滚动，必须出现滚动条才有用): 0<br>
+			
+		</p>	
+	</body>
+	<script>
+		window.onload = function(){
+			var obj = document.getElementById("ele");
+			var oele = document.documentElement;
+			var obody = document.body;
+			var oW = window;
+			//获取元素的offset-,client-,scroll-
+			console.log("div的width(只有通过style写在元素上才能获取)："+obj.style.width);
+			
+			console.log("div的offsetHeight(height+padding+border)："+obj.offsetHeight);
+			console.log("div的offsetWeight(width+padding+border)："+obj.offsetWidth);
+			console.log("div的offsetLeft（元素的x坐标，相对于文档的左边距离）："+obj.offsetLeft);
+			console.log("div的offsetTop（元素的y坐标，相对于文档的上边距离）："+obj.offsetTop);
+			console.log("div的offsetParent（指定属性所对应的父元素）："+obj.offsetParent.tagName);
+			console.log("div的offsetParent（指定属性所对应的父元素）："+obj.offsetParent.offsetTop);
+			
+			console.log("div的clientHeight（height+padding）："+obj.clientHeight);
+			console.log("div的clientWidth（height+padding）："+obj.clientWidth);
+			console.log("div的clientTop（相当于边框border）："+obj.clientTop);
+			console.log("div的clientLeft（相当于边框border）："+obj.clientLeft);
+			
+			console.log("div的scrollWidth（内容区width＋内边距padding＋溢出的内容）："+obj.scrollWidth);
+			console.log("div的scrollHeight（内容区height＋内边距padding＋溢出的内容）："+obj.scrollHeight);
+			console.log("div的scrollTop(指定元素滚动条的位置，通过设置它们让元素中内容滚动，必须出现滚动条才有用)："+obj.scrollTop);
+			console.log("div的scrollLeft(指定元素滚动条的位置，通过设置它们让元素中内容滚动，必须出现滚动条才有用)："+obj.scrollLeft);
+			
+			//documentElement和body
+			console.log("documentElement的clientHeight(可视区的高度)："+oele.clientHeight);
+			console.log("body的clientHeight(body内容区高度)："+obody.clientHeight);
+			console.log("documentElement的clientWidth(可视区宽度)："+oele.clientWidth);
+			console.log("body的clientWidth(body宽度)："+obody.clientWidth);
+			
+			console.log("documentElement的offsetWidth："+oele.offsetWidth);
+			console.log("body的offsetWidth："+obody.offsetWidth);
+			console.log("documentElement的offsetHeight："+oele.offsetHeight);
+			console.log("body的offsetHeight："+obody.offsetHeight);
+			
+			console.log("documentElement的scrollHeight(网页正文全文高)："+oele.scrollHeight);
+			console.log("body的scrollHeight(网页正文全文高)："+obody.scrollHeight);
+			console.log("documentElement的scrollWidth(网页正文全文宽)："+oele.scrollWidth);
+			console.log("body的scrollWidth(网页正文全文宽)："+obody.scrollWidth);
+			
+			console.log("documentElement的scrollTop(值为0)："+oele.scrollTop);
+			console.log("body的scrollTop(网页被卷去的高)："+obody.scrollTop);
+			console.log("documentElement的scrollLeft(网页被卷去的宽)："+oele.scrollLeft);
+			console.log("body的scrollLeft(网页被卷去的宽)："+obody.scrollLeft);
+			
+			//window
+			console.log("window的screenTop(屏幕分辨率宽)："+oW.screen.width);
+			console.log("window的screenTop(屏幕分辨率高)："+oW.screen.height);
+			
+			
+			//用offsetLeft和offsetTop来计算e的位置
+			function getElementPosition(e){
+			    var x = 0,y = 0;
+			    while(e != null) {
+			        x += e.offsetLeft;
+			        y += e.offsetTop;
+			        e = e.offsetParent;
+			    }
+			    return {
+			        x : x,
+			        y : y
+			    };
+			}
+		}
+	</script>
+</html>
