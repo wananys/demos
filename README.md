@@ -1,5 +1,3 @@
 # demos
 
-demos集锦
-
-积累，从点滴做起。
+该项目下的demo均为博客中的demo,请直接查看[ihzenHuang的博客](http://www.ihzen.com)
