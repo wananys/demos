@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>纯css实现开关效果</title>
+		<style>
+		  	*{margin: 0;padding: 0;}
+			html{font-size: 100%;}
+			body{font-size: 1em;}
+			label,input,select{vertical-align: middle;}
+			label{display: block;margin-top:1em ;}
+			.content{margin: 2em;}
+			.switch{
+				width:3.25em;
+				height: 2em;
+				border:1px solid #dfdfdf;
+				background-color: #fdfdfd;
+				display: inline-block;
+				border-radius: 1.25em;
+				box-shadow: #dfdfdf 0 0 0 0 inset;
+				background-clip: content-box;
+				-webkit-appearance:none;
+				-webkit-user-select: none;
+				outline: none;
+				position: relative;
+			}
+			.switch:before{
+				content: '';
+				width: 1.8em;
+				height: 1.8em;
+				position: absolute;
+				top: 0;
+				left: 0;
+				border-radius: 1.25em;
+				background-color: #fff;
+				box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+			}
+			.switch:checked{
+				border-color:#64bd63 ;
+				background-color: #64bd63;
+				box-shadow: #64bd63 0 0 0 1em inset;
+			}
+			.switch:checked:before{
+				left: 1.4em;
+			}
+			
+			.switch.switch-anim{
+				transition: background-color ease 0.4s;
+			}
+			.switch.switch-anim:before{
+				transition: left 0.3s;
+			}
+			.switch.switch-anim:checked{
+				box-shadow: #dfdfdf 0 0 0 0 inset;
+ 				background-color: #64bd63;
+		      	transition: border-color 0.4s, background-color ease 0.4s;
+			}
+			.switch.switch-anim:checked:before{
+				transition: left 0.3s;
+			}
+			
+			/*.mui-switch.mui-switch-animbg {
+    transition: background-color ease 0.4s; }
+    .mui-switch.mui-switch-animbg:before {
+      transition: left 0.3s; }
+    .mui-switch.mui-switch-animbg:checked {
+      box-shadow: #dfdfdf 0 0 0 0 inset;
+      background-color: #64bd63;
+      transition: border-color 0.4s, background-color ease 0.4s; }
+      .mui-switch.mui-switch-animbg:checked:before {
+        transition: left 0.3s; }*/
+		</style>
+	</head>
+	<body>
+		<div class="content">
+			<label><input class="switch" type="checkbox"> 默认未选中</label>
+			<label><input class="switch" type="checkbox" checked="checked"> 默认选中</label>
+			<label><input class="switch switch-anim" type="checkbox"> 默认未选中(过渡动画)</label>
+			<label><input class="switch switch-anim" type="checkbox" checked="checked"> 默认选中(过渡动画)</label>
+		</div>
+		
+	</body>
+</html>
