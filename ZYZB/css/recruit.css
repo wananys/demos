@@ -1,0 +1,84 @@
+@charset "utf-8";
+
+body{
+	background-color: #F4F4F4;
+}
+.recruit{
+	margin-bottom: 50px;
+}
+.recruit .title{
+	color: #C80000;
+}
+.recruit .em{
+	background-color: #F4F4F4;
+}
+
+/*banner*/
+.rec-banner{
+	position: relative;
+	margin: 40px 0 20px;
+}
+.rec-banner .traingle{
+	position: absolute;
+	top: 0;
+	left: 125px;
+}
+
+/*职位列表*/
+.rec-list{
+	border-bottom: 5px #C80000 solid;
+}
+.rec-list-head{
+	background-color: #C80000;
+	font-size: 24px;
+	color: #fff;
+	height: 60px;
+	line-height: 60px;
+}
+.rec-list span{
+	width: 230px;
+	display: inline-block;
+}
+.rec-list .rec-name{
+	width: 310px;
+	padding-left: 20px;
+}
+.rec-list-body{
+	height: 50px;
+	line-height: 50px;
+	color: #333;
+	font-size: 16px;
+}
+.rec-list-body:nth-child(2n){
+	background-color: #fff;
+}
+.rec-list-body span{
+	padding-left: 20px;
+}
+
+/*职位介绍*/
+.rec-detail{
+	padding: 30px 110px;
+	background-color: #FFFFFF;
+	font-size: 16px;
+	color: #666;
+	line-height: 3;
+	margin: 50px auto;
+}
+.rec-detail-date{
+	 margin-left: -30px; 
+}
+.rec-detail-title{
+	color: #333;
+	font-size: 24px;
+	text-align: center;
+	line-height: 5;
+}
+.rec-detail span{
+	width: 290px;
+	display: inline-block;
+}
+.rec-detail b{
+	color: #333;
+	font-weight: 600;
+}
