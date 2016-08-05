@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>this、call、apply</title>
+	</head>
+	<body>
+		<p>this、call、apply用法</p>
+		<div id="div1">我是一个div</div>
+	</body>
+	<script>
+		//this指向
+//		1.作为对象的方法调用(指向该对象)
+//		var obj = {
+//			a:1,
+//			getA: function(){
+//				alert(this === obj); //输出：true
+//				alert(this.a);  //输出：1
+//			}
+//		}
+//		obj.getA();
+		//2.作为普通函数调用（不作为对象的属性调用时，指向全局对象，在浏览器的javascript里，这个全局对象是window对象）
+//		window.name = "globalName";
+//		
+//		var getName = function(){
+//			return this.name;
+//		};
+//		console.log(getName());  //输出:globalName
+//		
+//		window.name = "globalName";
+//		
+//		var myObject = {
+//			name:'sven',
+//			getName: function(){
+//				return this.name;
+//			}
+//		}
+//		var getName = myObject.getName;
+//		console.log(getName());  //输出:globalName
+//		console.log(myObject.getName());  //输出： sven
+
+
+//		window.id = "window";
+//		document.getElementById('div1').onclick = function(){
+//			alert(this.id);  //输出： div1
+//			var that = this;
+//			var callback = function(){
+//				alert(that.id);  //输出window
+//			}
+//			callback();
+//		}
+		
+		//构造器调用
+//		var MyClass = function(){
+//			this.name = "sven";
+////			return{
+////				name: 'anne'
+////			}
+//			return 'anne';
+//		}
+//		var obj = new MyClass();
+//		console.log(obj.name);  //输出：sven
+
+		//4.Function.prototype.call或Function.prototype.apply调用
+		var obj1 = {
+			name: 'sven',
+			getName: function(){
+				return this.name;
+			}
+		};
+		var obj2 = {
+			name: 'anne'
+		};
+		console.log(obj1.getName());  //输出： sven
+		console.log(obj1.getName.call(obj2));  //输出： anne
+		
+		
+	</script>
+</html>
