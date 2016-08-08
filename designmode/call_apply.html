@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+	</body>
+	<script>
+//		apply方法
+//		var fun = function(a,b,c){
+//			alert([a,b,c]);//输出1,2,3
+//		};
+//		fun.apply(null,[1,2,3,4]);
+		
+		//call方法
+//		var func= function(a,b,c){
+//			alert([a,b,c]);
+//		};
+//		func.call(null,1,2,3,4);
+
+//		var func = function(a,b,c){
+//			alert(this == window);  
+//		};
+//		func.apply(null,[1,2,3]);
+
+//		Math.max.apply(null,[1,2,5,3,4]);
+
+		var obj1 = {
+			name : 'sven'
+		};
+		var obj2 = {
+			name: 'anne'
+		};
+		window.name = "Window";
+		var getName = function(){
+			alert(this.name);
+		};
+		
+		getName();
+		getName.call(obj1);
+		getName.call(obj2);
+		
+	</script>
+</html>
