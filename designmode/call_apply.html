@@ -84,16 +84,39 @@
 //		}.bind(obj,1,2);
 //		func(3,4);
 
-		var A = function(name){
-			this.name = name;
+//		var A = function(name){
+//			this.name = name;
+//		};
+//		var B = function(){
+//			A.apply(this,arguments);
+//		};
+//		B.prototype.getName = function(){
+//			return this.name;
+//		};
+//		var b = new B('sven');
+//		console.log(b.getName());
+
+//		(function(){
+//			Array.prototype.push.call(arguments,3);
+//			console.log(arguments);  //输出[1,2,3]
+//		})(1,2);
+		
+//		function ArrayPush(){
+//			var n = TO_UINT32(this.length);
+//			var m = %_ArgumentsLength();
+//			for(var i=0; i<m;i++){
+//				this[i +n]=%_Arguments(i);
+//			}
+//			this.length = n+m;
+//			return this.length;
+//		};
+
+		var a = {
+			length: 0
 		};
-		var B = function(){
-			A.apply(this,arguments);
-		};
-		B.prototype.getName = function(){
-			return this.name;
-		};
-		var b = new B('sven');
-		console.log(b.getName());
+		Array.prototype.push.call(a,"first");
+		
+		alert(a.length);  //输出1
+		alert(a[0]);  //first
 	</script>
 </html>
