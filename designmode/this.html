@@ -23,6 +23,7 @@
 //		window.name = "globalName";
 //		
 //		var getName = function(){
+	
 //			return this.name;
 //		};
 //		console.log(getName());  //输出:globalName
@@ -75,16 +76,25 @@
 //		console.log(obj1.getName.call(obj2));  //输出： anne
 
 //		丢失的this
-		var obj = {
-			myName: 'sven',
-			getName: function(){
-				return this.myName;
+//		var obj = {
+//			myName: 'sven',
+//			getName: function(){
+//				return this.myName;
+//			}
+//		};
+//		console.log(obj.getName());  //输出：sven
+//		var getName2 = obj.getName;
+//		console.log(getName2());  //输出: undefined
+
+		document.getElementById = (function(func){
+			return function(){
+				return func.apply(document,arguments);
 			}
-		};
-		console.log(obj.getName());  //输出：sven
-		var getName2 = obj.getName;
-		console.log(getName2());  //输出: undefined
+		})(document.getElementById);
 		
+		var getId = document.getElementById;
+		var div = getId('div1');
+		alert(div.id);
 		
 	</script>
 </html>

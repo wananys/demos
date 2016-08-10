@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+	</body>
+	<script>
+//		window.name = "Window";
+//		var run = function(){
+//			alert('My name is '+this.name);
+//		};
+//		run();
+		
+//		window.name = "Window";
+//		object = {
+//			name: 'object',
+//			run: function(){
+//				alert("My name is " + this.name);
+//			}
+//		};
+//		object.run();
+	
+	
+		window.name = "Window";
+		object = {
+			name: 'object',
+			run: function(){
+				var inner = function(){
+					alert("My name is " + this.name);
+				};
+//				inner();
+				inner.call(this);
+			}
+		};
+		object.run();
+	</script>
+</html>
