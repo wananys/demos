@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>闭包和高阶函数</title>
+	</head>
+	<body>
+	</body>
+	<script>
+	
+		//变量的作用域
+		
+//		var a =1;
+//		var func1 = function(){
+//			var b = 2;
+//			var func2 = function(){
+//				var c=3;
+//				alert(b);
+//				alert(a);
+//			}
+//			func2();
+//			alert(c);
+//		}
+//		func1();
+
+//		变量的生存周期
+//		var func = function(){
+//			var a = 1;
+//			alert(a);
+//		};
+//		func();
+
+//		var func = function(){
+//			var a = 1;
+//			return function(){
+//				a++;
+//				alert(a);
+//			}
+//		};
+//		func()();
+//		var f = func();
+//		f();
+//		f();
+//		f();
+//		f();
+//		f();
+
+		var Type = {};
+		for(var i=0,type;type=['String','Array','Number'][i++];){
+			(function(type){
+				Type['is'+type] = function(obj){
+					return Object.prototype.toString.call(obj) === '[object'+type+']';
+				}
+			})(type)
+		};
+		Type.isArray([]);
+		Type.isString('str');
+		
+	</script>
+</html>
