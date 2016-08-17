@@ -38,6 +38,7 @@
 		<![endif]-->
 		<!--头部start-->
 		<div class="header width-default">
+			<div class="header-content">
 			<a href="index.html"><img class="logo" src="img/logo.png"/></a>
 			<ul class="menus">
 				<li><a href="index.html">首页</a></li>
@@ -57,6 +58,7 @@
 				</li>
 				<li class="active"><a href="recruit.html">招才纳贤</a></li>
 			</ul>
+			</div>
 		</div>
 		<!--头部end-->
 		
@@ -125,9 +127,11 @@
 			
 			<!--分页栏-->
 			<div class="page-box">
-				<ul class="page-list" id="pagenation">
-					<li class="page active"><a href="javascript:void(0);">1</a></li>
-				</ul>
+				<div class="page-list" id="pagenation">
+					<a href="javascript:void(0);" class="selected">1</a>
+					<a href="javascript:void(0);" class="">2</a>
+					<a href="javascript:void(0);" class="">3</a>
+				</div>
 			</div>
 		</div>
 		<!--招才纳贤end-->
@@ -136,11 +140,13 @@
 		
 		<!--底部start-->
 		<div class="width-default footer">
+			<div class="footer-content">
 			<h3 class="contact">CONTACT</h3>
 			<p>地址：上海市浦东新区银城中路68号时代金融中心29层</p>
 			<p>电话：400 728 0153</p>
 			<p class="f-right">@2015 CHANE CAPITL.ALL RIGHT RESERVED</p>
 			<img src="img/logo_footer.png" class="footer-logo"/>
+			</div>
 		</div>
 		<!--底部end-->
 	</body>
@@ -150,27 +156,27 @@
 	<script>
 		$(document).ready(function(){
 			//分页
-			var total_pages = 2;  //设置分页的总页数
-			var visible_pages = 5; //设置最多显示的页码数
-			var currnt_page = 1; //设置当前的页码
-			var page_size = 5; //设置每一个的条目数
-			var total_counts = 20;//设置分页的总条目数
-			if(total_pages>1){
-				$('#pagenation').jqPaginator({
-				    visiblePages: visible_pages,
-				    currentPage: currnt_page,
-				    pageSize: page_size,
-				    totalCounts: total_counts, 
-				    onPageChange: function (num, type) {
-				    	//回调函数，当换页时触发（包括初始化第一页的时候），会传入两个参数：
-						//1、“目标页"的页码，Number类型
-						//2、触发类型，可能的值：“init”（初始化），“change”（点击分页）
-				        console.log(num);
-				        console.log(type);
-				        
-				    }
-				});
-			}
+//			var total_pages = 2;  //设置分页的总页数
+//			var visible_pages = 5; //设置最多显示的页码数
+//			var currnt_page = 1; //设置当前的页码
+//			var page_size = 5; //设置每一个的条目数
+//			var total_counts = 20;//设置分页的总条目数
+//			if(total_pages>1){
+//				$('#pagenation').jqPaginator({
+//				    visiblePages: visible_pages,
+//				    currentPage: currnt_page,
+//				    pageSize: page_size,
+//				    totalCounts: total_counts, 
+//				    onPageChange: function (num, type) {
+//				    	//回调函数，当换页时触发（包括初始化第一页的时候），会传入两个参数：
+//						//1、“目标页"的页码，Number类型
+//						//2、触发类型，可能的值：“init”（初始化），“change”（点击分页）
+//				        console.log(num);
+//				        console.log(type);
+//				        
+//				    }
+//				});
+//			}
 			
 		});
 		
