@@ -1,21 +1,17 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title>立即调用的函数表达式</title>
-		<style>
-			.create-post-textarea {
-            border: 0;
-            width: 100%;
-            background: #FFFFFF;
-            height: 120px;
-        }
-		</style>
-	</head>
-	<body>
-		<textarea class="create-post-textarea"></textarea>
-	</body>
-	<script>
-		
-	</script>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Hello world</title>
+</head>
+<body>
+    <h1>Hello world</h1>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
+    <script type="text/javascript">
+        var pdf = new jsPDF();
+        var html = "Hello world!Hello world!Hello world!Hello world!Hello world!<p>123</p>"
+        pdf.text(30, 30, 'Hello world!');
+        pdf.save('hello_world.pdf');
+    </script>
+</body>
 </html>
