@@ -6,12 +6,86 @@
 </head>
 <body>
     <h1>Hello world</h1>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
+    <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>-->
     <script type="text/javascript">
-        var pdf = new jsPDF();
-        var html = "Hello world!Hello world!Hello world!Hello world!Hello world!<p>123</p>"
-        pdf.text(30, 30, 'Hello world!');
-        pdf.save('hello_world.pdf');
+//      var pdf = new jsPDF();
+//      var html = "Hello world!Hello world!Hello world!Hello world!Hello world!<p>123</p>"
+//      pdf.text(30, 30, 'Hello world!');
+//      pdf.save('hello_world.pdf');
+//		var isType = function(type){
+//			return function(obj){
+//				return Object.prototype.toString.call(obj) === '[object '+type+']';
+//			}
+//		}
+//		var isString = isType('Array')([1,2,3]);
+//		console.log(isString);
+		
+//		var Type = {};
+//		
+//		for (var i =0,type;type = ['String','Array','Number'][ i++ ];) {
+//			(function(type){
+//				Type[ 'is' + type] = function(obj){
+//					return Object.prototype.toString.call(obj) === '[object '+type+']';
+//				}
+//			})(type)
+//		};
+//		
+//		console.log(Type.isString([]));
+
+//		var getSingle = function(fn){
+//			var ret;
+//			return function(){
+//				return ret || (fn.apply(this,arguments));
+//			};
+//		};
+//		
+//		var getScript = getSingle(function(){
+//			return document.createElement('script');
+//		});
+//		var script1 = getScript();
+//		var script2 = getScript();
+//		alert(script1 === script2);
+
+//		var cost = (function(){
+//			var args = [];
+//			return function(){
+//				if(arguments.length === 0){
+//					var money = 0;
+//					for(var i = 0, l = args.length; i < l;i++){
+//						money += args[i];
+//					}
+//					return money;
+//				}else{
+//					[].push.apply(args,arguments);
+//				}
+//			}
+//		})();
+//		
+//		cost(100);
+//		cost(200);
+//		cost(300);
+//		console.log(cost());
+
+		var curring = function(fn){
+			var args = [];
+			return function(){
+				if(arguments.length === 0){
+					return fn.apply(this,args);
+				}else{
+					[].push.apply(args,arguments);
+					return arguments.callee;
+				}
+			}
+		};
+		var cost = (function(){
+			var money = 0;
+			return function(){
+				for(var i=0,l=arguments.length;i<l;i++){
+					money += arguments[i];
+				}
+				return money;
+			}
+		})();
     </script>
 </body>
 </html>
