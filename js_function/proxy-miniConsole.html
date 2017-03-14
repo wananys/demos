@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>代理模式---虚拟代理在惰性加载中的应用</title>
+	</head>
+	<body>
+		
+	</body>
+	<script>
+		//未加载真正的miniConsole.js之前的代码：
+		var cache = [];
+		var miniConsole = {
+			log:function(){
+				var args = arguments;
+				cache.push(function(){
+					return miniConsole.log.apply(miniConsole,args);
+				});
+			}
+		};
+		miniConsole.log(1);
+		
+		//当按下F2时，开始加载真正的miniConsole.js，代码如下：
+		var handler = function(ev){
+			if(ev.keyCode === 113){
+				var script = document.createElement('script');
+				script.onload = function(){
+					for (var i=0, fn;fn = cache[i++];) {
+						fn();
+					}
+				};
+				script.src = 'miniConsole.js';
+				document.getElementsByTagName('head')[0].appendChild(script);
+			}
+		};
+		document.body.addEventListener('keydown',handler,false);
+		
+		//miniConsole.js代码
+		miniConsole = {
+			log:function(){
+				//真正代码略
+				console.log(Array.prototype.join.call(arguments));
+			}
+		};
+		
+		//我们整理一下miniConsole代理对象的代码，使它成为一个标准的虚拟代理对象，代码如下：
+		var miniConsole = (function(){
+			var cache = [];
+			var handler = function(ev){
+				if(ev.keyCode === 113){
+					var script = document.createElement('script');
+					script.onload = function(){
+						for (var i =0,fn;fn = cache[i++];) {
+							fn();
+						}
+					};
+					script.src = 'miniConsole.js';
+					document.getElementsByTagName('head'[0].appendChild(script));
+					document.body.removeEventListener('keydown',handler);  //只加载一次miniConsole.js
+				}
+			};
+			document.body.addEventListener('keydown',handler,false);
+			return {
+				log:function(){
+					var args = arguments;
+					cache.push(function(){
+						return miniConsole.log.apply(miniConsole,args);
+					});
+				}
+			}
+		})();
+		miniConsole.log(1);
+		
+		//miniConsole.js真正的代码
+		miniConsole = {
+			log:function(){
+				console.log(Array.prototype.join.call(arguments));
+			}
+		};
+	</script>
+</html>

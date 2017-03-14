@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>代理模式---虚拟代理实现图片预加载</title>
+	</head>
+	<body>
+		
+	</body>
+	<script>
+//		var myImage = (function(){
+//			var imgNode = document.createElement('img');
+//			document.body.appendChild(imgNode);
+//			return {
+//				setSrc: function(src){
+//					imgNode.src = src;
+//				}
+//			}
+//		})();
+//		
+//		var proxyImage = (function(){
+//			var img = new Image;
+//			img.onload = function(){
+//				myImage.setSrc(this.src);
+//			}
+//			return {
+//				setSrc:function(src){
+//					myImage.setSrc('images/temp1.jpg');
+//					img.src = src;
+//				}
+//			}
+//		})();
+//		proxyImage.setSrc('http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg');
+
+		var myImage = (function(){
+			var imgNode = document.createElement('img');
+			document.body.appendChild(imgNode);
+			
+			return function(src){
+				imgNode.src = src;
+			}
+		})();
+		
+		var proxyImage = (function(){
+			var img = new Image;
+			img.onload = function(){
+				myImage(this.src);
+			}
+			return function(src){
+				myImage('images/temp1.jpg');
+				img.src = src;
+			}
+		})();
+		proxyImage('http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg');
+		
+		
+	</script>
+</html>

@@ -6,6 +6,7 @@
 </head>
 <body>
     <h1>Hello world</h1>
+    <div id="div">点我绑定事件</div>
     <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>-->
     <script type="text/javascript">
 //      var pdf = new jsPDF();
@@ -66,26 +67,199 @@
 //		cost(300);
 //		console.log(cost());
 
-		var curring = function(fn){
-			var args = [];
-			return function(){
-				if(arguments.length === 0){
-					return fn.apply(this,args);
-				}else{
-					[].push.apply(args,arguments);
-					return arguments.callee;
+//		var curring = function(fn){
+//			var args = [];
+//			return function(){
+//				if(arguments.length === 0){
+//					return fn.apply(this,args);
+//				}else{
+//					[].push.apply(args,arguments);
+//					return arguments.callee;
+//				}
+//			}
+//		};
+//		var cost = (function(){
+//			var money = 0;
+//			return function(){
+//				for(var i=0,l=arguments.length;i<l;i++){
+//					money += arguments[i];
+//				}
+//				return money;
+//			}
+//		})();
+//		
+//		var cost = curring(cost);
+//		cost(100);
+//		cost(200);
+//		cost(300);
+//		alert(cost());
+
+//		Function.prototype.uncurrying = function(){
+//			var self = this;
+//			return function(){
+//				var obj = Array.prototype.shift.call(arguments);
+//				return self.apply(obj,arguments);
+//			}
+//		}
+		
+//		var push = Array.prototype.push.uncurrying();
+//		(function(){
+//			push(arguments,4);
+//			console.log(arguments);
+//		})(1,2,3);
+		
+//		for(var i=0,fn,ary = ['push', 'shift', 'forEach'];fn = ary[i++];){
+//			Array[ fn ] = Array.prototype[ fn ].uncurrying();
+//		};
+//		var obj = {
+//			'length':3,
+//			'0':1,
+//			'1':2,
+//			'2':3
+//		};
+//		console.log(obj);
+//		Array.push(obj,4);
+//		console.log(obj);
+//		console.log(obj.length);
+//		
+//		var first = Array.shift(obj);
+//		console.log(first);
+//		console.log(obj);
+//		Array.forEach(obj, function(i,n){
+//			console.log(n);
+//		});
+//		
+//		var call = Function.prototype.call.uncurrying();
+//		var fn = function(name){
+//			console.log(name);
+//		};
+//		call(fn, window,'sven');
+//		
+//		var apply = Function.prototype.apply.uncurrying();
+//		var fn = function(name){
+//			console.log(this.name);
+//			console.log(arguments);
+//		};
+//		apply(fn,{name: 'sven'},[1,2,3]);
+
+		//函数节流
+//		var throttle = function(fn,interval){
+//			var _self = fn,   //保存需要被延时执行的函数引用
+//				timer,   //定时器
+//				firstTime = true;  //是否是第一次调用
+//			
+//			return function(){
+//				var args =arguments,
+//					_me = this;
+//				if(firstTime){  //如果是第一次调用，不需延迟执行
+//					_self.apply(_me,args);
+//					return firstTime = false;
+//				}
+//				
+//				if(timer){   //如果定时器还在，说明前一次延迟执行还没有完成
+//					return false;
+//				}
+//				timer = setTimeout(function(){ //延迟一段时间执行
+//					clearTimeout(timer);
+//					timer= null;
+//					_self.apply(_me, args);
+//					
+//				},interval || 500);
+//			};
+//		};
+//		
+//		window.onresize = throttle(function(){
+//			console.log(1);
+//		},500);
+
+//		分时函数
+//		var ary = [];
+//		for (var i=1;i<=1000;i++) {
+//			ary.push(i);
+//		}
+//		var renderFriendList = function(data){
+//			for (var i=0,l=data.length;i<l;i++) {
+//				var div = document.createElement('div');
+//				div.innerHTML = i;
+//				document.body.appendChild(div);
+//			}
+//		};
+//		renderFriendList(ary);
+
+//		var timeChunk = function(ary, fn, count){
+//			var obj,
+//				t;
+//			var len = ary.length;
+//			var start = function(){
+//				for (var i =0; i<Math.min(count || 1,ary.length);i++) {
+//					var obj = ary.shift();
+//					fn(obj);
+//				}
+//			};
+//			
+//			return function(){
+//				t = setInterval(function(){
+//					if(ary.length === 0){
+//						return clearInterval(t);
+//					}
+//					start();
+//				},200);
+//			};
+//		};
+//		
+//		var ary = [];
+//		for (var i =1;i<=1000;i++) {
+//			ary.push(i);
+//		};
+//		var rendFriendList = timeChunk(ary,function(n){
+//			var div = document.createElement('div');
+//			div.innerHTML = n;
+//			document.body.appendChild(div);
+//		},8);
+//		rendFriendList();
+
+		//懒性加载函数
+//		var addEvent = function(elem, type, handler){
+//			if(window.addEventListener){
+//				return elem.addEventListener(type,handler,false);
+//			}
+//			if(window.attachEvent){
+//				return elem.attachEvent('on'+type,handler);
+//			}
+//		};
+//		var addEvent = (function(){
+//			if(window.addEventListener){
+//				return function(elem,type,handler){
+//					elem.addEventListener(type,handler,false);
+//				}
+//			}
+//			if(window.attachEvent){
+//				return function(elem,type,handler){
+//					elem.attachEvent('on'+type,handler);
+//				}
+//			}
+//		})();
+
+		var addEvent = function(elem,type,handler){
+			if(window.addEventListener){
+				addEvent = function(elem,type,handler){
+					elem.addEventListener(type,handler,false);
+				}
+			}else if(window.attachEvent){
+				addEvent = function(elem,type,handler){
+					elem.attachEvent('on'+type,handler);
 				}
 			}
+			addEvent(elem,type,handler);
 		};
-		var cost = (function(){
-			var money = 0;
-			return function(){
-				for(var i=0,l=arguments.length;i<l;i++){
-					money += arguments[i];
-				}
-				return money;
-			}
-		})();
+		
+		var div = document.getElementById('div');
+		addEvent(div,'click',function(){
+			alert(1);
+		});
+		addEvent(div,'click',function(){
+			alert(2);
+		});
+		
     </script>
 </body>
-</html>

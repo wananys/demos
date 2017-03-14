@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>策略模式</title>
+	</head>
+	<body>
+		<div style="position: absolute;background: #E0403D;" id="div">我是div</div>
+	</body>
+	<script type="text/javascript">
+		//传统面向对象策略模式
+		/*var performanceS = function(){};
+		performanceS.prototype.calculate = function(salary){
+			return salary * 4;
+		};
+		var performanceA = function(){};
+		performanceA.prototype.calculate = function(salary){
+			return salary * 3;
+		};
+		var performanceB = function(){};
+		performanceB.prototype.calculate = function(salary){
+			return salary * 2;
+		};
+		var Bonus = function(){
+			this.salary = null;   //原始工资
+			this.straegy = null;   //绩效等级对应的策略对象
+		};
+		Bonus.prototype.setSalary = function(salary){
+			this.salary = salary;   //设置员工的原始工资
+		};
+		
+		Bonus.prototype.setStrategy = function(straegy){
+			this.straegy = straegy;  //设置员工绩效等级对应的策略对象
+		};
+		Bonus.prototype.getBonus = function(){  //取得奖金数额
+			return this.straegy.calculate(this.salary);   //把计算奖金的操作委托给对应的策略对象
+		}
+		
+		var bonus = new Bonus();
+		bonus.setSalary(1000);
+		bonus.setStrategy(new performanceS());  //设置策略对象
+		
+		console.log(bonus.getBonus());   //输出4000
+		
+		bonus.setStrategy(new performanceA());  //设置策略对象
+		console.log(bonus.getBonus());  //输出3000
+		*/
+		//javascript版本的策略模式
+		/*var strategies = {
+			"S":function(salary){
+				return salary * 4;
+			},
+			"A":function(salary){
+				return salary * 3;
+			},
+			"B":function(salary){
+				return salary * 2;
+			}
+		};
+		var calculateBonus = function(level, salary){
+			return strategies[level](salary);
+		};
+		
+		console.log(calculateBonus('S',20000));  //输出80000
+		console.log(calculateBonus('A',10000));  //输出30000
+		*/
+		//让小球动起来（实现动画效果的原理）
+		//常见动画缓动效果:4个参数分别是动画已消耗的时间、小球原始位置、小球目标位置、动画持续的总时间
+		var tween = {
+			linear: function(t,b,c,d){
+				return c*t/d + b;
+			},
+			easeIn:function(t,b,c,d){
+				return c*(t/=d)*t+b;
+			},
+			strongEaseIn:function(t,b,c,d){
+				return c*(t/=d)*t*t*t*t+b;
+			},
+			strongEaseOut:function(t,b,c,d){
+				return c *((t=t/d-1)*t*t*t*t+1)+b;
+			},
+			sineaseIn:function(t,b,c,d){
+				return c*(t/=d)*t*t +b;
+			},
+			sineaseOut:function(t,b,c,d){
+				return c*((t=t/d-1)*t*t+1)+b;
+			}
+		};
+		var Animate = function(dom){
+			this.dom = dom;              //进行运动的dom节点
+			this.startTime = 0;          //动画开始时间
+			this.startPos = 0;           //动画开始时，dom节点的位置，即dom的初始位置
+			this.endPos = 0;             //动画结束时，dom节点的位置，即dom的目标位置
+			this.propertyName = null;    //dom节点需要被改变的css属性
+			this.easing = null;          //缓动算法
+			this.duration = null;        //动画持续时间
+		}
+		
+		//该方法负责启动这个动画
+		Animate.prototype.start = function(propertyName,endPos,duration,easing){
+			this.startTime = +new Date();   //动画启动时间
+			this.startPos = this.dom.getBoundingClientRect()[propertyName];  //dom节点初始位置
+			this.propertyName = propertyName;  //dom节点需要被改变的css属性名
+			this.endPos = endPos;  //dom节点目标位置
+			this.duration = duration;  //动画持续时间
+			this.easing = tween[easing];   //缓动算法
+			
+			var self = this;
+			var timeId = setInterval(function(){
+				if(self.step() === false){
+					clearInterval(timeId);
+				}
+			},19);
+		};
+		
+		//该方法代表小球运动的每一帧要做的事情
+		Animate.prototype.step = function(){
+			var t =+ new Date();      //取得当前时间
+			if(t>= this.startTime + this.duration){
+				this.update(this.endPos);    //更新小球的css属性值
+				return false;
+			}
+			var pos = this.easing(t - this.startTime,this.startPos,this.endPos- this.startPos,this.duration);
+			//pos为当前小球的位置
+			this.update(pos);   //更新小球的css的属性值
+		};
+		
+		//该方法负责更新小球css属性值
+		Animate.prototype.update = function(pos){
+			this.dom.style[this.propertyName] = pos + 'px';
+		};
+		
+		var div = document.getElementById('div');
+		var animate = new Animate(div);
+		animate.start('left',500,1000,'strongEaseOut');
+	</script>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>代理模式</title>
+	</head>
+	<body>
+		
+	</body>
+	<script>
+		var Flower = function(){};
+		var xiaoming = {
+			sendFlower:function(target){
+				var flower = new Flower();
+				target.receiveFlower( flower );
+			}
+		};
+		var A = {
+			receiveFlower:function(flower){
+				console.log('收到花' + flower);
+			}
+		};
+		xiaoming.sendFlower(A);
+		
+		//引入代理
+		var Flower = function(){};
+		var xiaoming = {
+			sendFlower: function(target){
+				var flower = new Flower();
+				target.receiveFlower(flower);
+			}
+		};
+		var B = {
+			receiveFlower: function(flower){
+				A.receiveFlower(flower);
+			}
+		};
+		var A = {
+			receiveFlower: function(flower){
+				console.log('收到花'+ flower);
+			}
+		};
+		xiaoming.sendFlower(B);
+		
+		//代理监听
+		var Flower = function(){};
+		var xiaoming = {
+			sendFlower:function(target){
+				var flower = new Flower();
+				target.receiveFlower(flower);
+			}
+		};
+		var B = {
+			receiveFlower: function(flower){
+				A.listenGoodMood(function(){  //监听A的好心情
+					A.receiveFlower(flower);
+				});
+			}
+		};
+		var A = {
+			receiveFlower:function(flower){
+				console.log('收到花'+flower);
+			},
+			listenGoodMood:function(fn){
+				setTimeout(function(){//假设10秒后A的心情变好
+					fn();
+				},1000);
+			}
+		};
+		xiaoming.sendFlower(B);
+	</script>
+</html>
