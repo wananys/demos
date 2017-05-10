@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>宏命令</title>
+	</head>
+	<body>
+	</body>
+	<script>
+		var closeDoorCommand = {
+			execute: function(){
+				console.log('关门');
+			}
+		};
+		
+		var openPcCommand = {
+			execute: function(){
+				console.log('开电脑');
+			}
+		};
+		
+		var oppenQQCommand = {
+			execute: function(){
+				console.log('登录QQ');
+			}
+		};
+		
+		//定义宏命令
+		var MacroCommand = function(){
+			return {
+				commandList: [],
+				add: function( command ){
+					this.commandList.push( command );
+				},
+				execute: function(){
+					for (var i=0,command; command = this.commandList[i++];) {
+						command.execute();
+					}
+				}
+			}
+		};
+		
+		var macroCommand = MacroCommand();
+		macroCommand.add( closeDoorCommand );
+		macroCommand.add( openPcCommand );
+		macroCommand.add( oppenQQCommand );
+		
+		macroCommand.execute();
+	</script>
+</html>

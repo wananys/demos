@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>数据统计上报</title>
+	</head>
+	<body>
+		<button tag="login" id="button">点击打开登录浮层</button>
+	</body>
+	<script>
+		var showLogin = function(){
+			console.log('打开登录浮层');
+			log(this.getAttribute('tag'));
+		}
+		
+		var log = function(tag){
+			console.log('上报标签为：'+tag);
+			
+		}
+		document.getElementById('button').onclick = showLogin;
+	</script>
+</html>

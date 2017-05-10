@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>引入中介者</title>
+	</head>
+	<body>
+		<div>
+			选择颜色：
+			<select id="colorSelect">
+				<option value="">请选择</option>
+				<option value="red">红色</option>
+				<option value="blue">蓝色</option>
+			</select><br />
+			选择内存：
+			<select id="memorySelect">
+				<option value="">请选择</option>
+				<option value="32G">32G</option>
+				<option value="64G">64G</option>
+			</select><br />
+			输入购买数量:<input type="text" id="numberInput" value=""/><br/>
+			您选择了颜色:<div id="colorInfo"></div><br />
+			您选择了内存：<div id="memoryInfo"></div><br />
+			您输入了数量:<div id="numberInfo"></div><br/>
+			<button id="nextBtn" disabled="true">请选择手机颜色和购买数量</button>
+		</div>
+		<script>
+			var goods = {
+				"red|32G":3,
+				"red|16G":0,
+				"blue|32G":1,
+				"blue|64G":6
+			};
+			
+			var mediator = (function(){
+				var colorSelect = document.getElementById('colorSelect'),
+					memorySelect = document.getElementById('memorySelect'),
+					numberInput = document.getElementById('numberInput'),
+					colorInfo = document.getElementById('colorInfo'),
+					memoryInfo = document.getElementById('memoryInfo'),
+					numberInfo = document.getElementById('numberInfo'),
+					nextBth = document.getElementById('nextBtn');
+					
+				return {
+					changed: function(obj){
+						var color = colorSelect.value,  //颜色
+							memory = memorySelect.value,  //内存
+							number = numberInput.value,   //数量
+							stock = goods[color + '|' + memory];  //颜色和内存对应的手机库存数量
+						
+						if(obj === colorSelect){    //如果改变的是选择颜色下拉框
+							colorInfo.innerHTML = color;
+						}else if(obj === memorySelect){
+							memoryInfo.innerHTML = memory;
+						}else if(obj === numberInput){
+							numberInfo.innerHTML = number;
+						}
+						
+						if(!color){
+							nextBth.disabled = true;
+							nextBth.innerHTML = '请选择手机颜色';
+						}
+						
+						if(!memory){
+							nextBth.disabled = true;
+							nextBth.innerHTML = "请选择内存大小";
+							return;
+						}
+						
+						if(Number.isInteger(number - 0) && number>0){//输入购买数量是否为正整数
+							nextBth.disabled = true;
+							nextBth.innerHTML = "请输入正确的购买数量";
+							return;
+						}
+						
+						nextBth.disabled = false;
+						nextBth.innerHTML = '放入购物车';
+					}
+				}
+			})();
+			
+			//事件函数
+			colorSelect.onchange = function(){
+				mediator.changed(this);
+			};
+			memorySelect.onchange = function(){
+				mediator.changed(this);
+			};
+			numberInfo.oninput = function(){
+				mediator.changed(this);
+			};
+		</script>
+	</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>用职责链模式重构代码</title>
+	</head>
+	<body>
+	</body>
+	<script>
+		var order500 = function(orderType, pay, stock){
+			if(orderType === 1 && pay === true){
+				console.log('500元定金预购，得到100元优惠券');
+			}else{
+				order200(orderType,pay,stock);   //将请求传递给200元订单
+			}
+		};
+		
+		var order200 = function(orderType, pay, stock){
+			if(orderType === 2 && pay === true){
+				console.log('200元定金预购，得到50优惠券');
+			}else{
+				orderNormal(orderType, pay, stock);
+			}
+		};
+		
+		var orderNormal = function(orderType, pay, stock){
+			if(stock > 0){
+				console.log('普通购买，无优惠券');
+			}else{
+				console.log('手机库存不足');
+			}
+		};
+		
+		
+	</script>
+</html>
