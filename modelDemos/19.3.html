@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>最少知识原则</title>
+	</head>
+	<body>
+	</body>
+	<script>
+		var mult = (function(){
+			var cache = {};
+			return function(){
+				var args = Array.prototype.join.call(arguments,',');
+				if(cache[args]){
+					return cache[args];
+				}
+				var a = 1;
+				for (var i=0,l=arguments.length;i<l;i++) {
+					a = a*arguments[i];
+				}
+				return cache[args] = a;
+			}
+		})();
+		
+		mult(1,2,3);
+	</script>
+</html>

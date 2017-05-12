@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>设计模式的SRP原则---迭代器模式</title>
+	</head>
+	<body>
+		<span style="color:red;text-underline: initial;">除本协议另有约定外</span>
+	</body>
+	<script>
+		var each = function(obj,callback){
+			var value,
+				i = 0,
+				length = obj.length,
+				isArry = isArraylike(obj);
+			
+			if(isArray){
+				for (; i <length;i++) {
+					callback.call(obj[i],i,obj[i]);
+				}
+			}else{
+				for (i in obj) {
+					value = callback.call(obj[i],i,obj[i]);
+				}
+			}
+			return obj;
+		};
+		
+		var appendDiv = function(data){
+			each(data, function(i,n){
+				var div = document.createElement('div');
+				div.innerHTML = n;
+				document.body.appendChild(div);
+			});
+		};
+		
+		appendDiv([1,2,3,4,5,6]);
+		appendDiv({a:1,b:2,c:3,d:4});
+	</script>
+</html>
