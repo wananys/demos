@@ -28,14 +28,6 @@
 		showLogin = showLogin.after(log);
 		document.getElementById('button').onclick = showLogin;
 		
-		var func = function(param){
-			console.log(param);  
-		}
 		
-		func = func.after(function(param){
-			param.b = 'b';
-		});
-		
-		func({a:"a"});
 	</script>
 </html>

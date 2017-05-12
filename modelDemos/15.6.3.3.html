@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>装饰着模式-插件式的表单验证</title>
+	</head>
+	<body>
+		用户名：<input id="username" type="text"/><br/>
+		密码：<input id="password" type="password" /> <br/>
+		<input id="submitBtn" type="button" value="提交"/>
+	</body>
+	<script>
+		var username = document.getElementById('username'),
+			password = document.getElementById('password'),
+			submitBtn = document.getElementById('submitBtn');
+		
+		Function.prototype.before = function(beforefn){
+			var _self = this;
+			return function(){
+				if(beforefn.apply(this,arguments) === false){
+					//beforefn返回false的情况下直接return，不再执行后面的原函数
+					return;
+				}
+				return _self.apply(this,arguments);
+			}
+		}
+		
+		var validata = function(){
+			if(username.value === ''){
+				alert('用户名不能为空');
+				return false;
+			}
+			if(password.value === ''){
+				alert('密码不能为空');
+				return false;
+			}
+			
+		}
+		
+		var formSubmit = function(){
+			var param = {
+				username: username.value,
+				password: password.value
+			}
+			ajax('http://xxx.com/login',param);
+		}
+		
+		formSubmit = formSubmit.before(validata);
+		
+		submitBtn.onclick = function(){
+			formSubmit();
+		}
+	</script>
+</html>
