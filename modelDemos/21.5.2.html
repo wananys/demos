@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<button id="exeCommand">执行菜单命令</button>
+	</body>
+	<script>
+		var RefreshMenuBarCommand = (function(){
+			function RefreshMenuBarCommand(){}
+			RefreshMenuBarCommand.prototype.execute = function(){
+				console.log('刷新菜单界面');
+			};
+			return RefreshMenuBarCommand;
+		})();
+		
+		var AddSubMenuCommand = (function(){
+			function AddSubMenuCommand(){}
+			AddSubMenuCommand.prototype.execute = function(){
+				console.log('增加子菜单');
+			}
+			return AddSubMenuCommand;, 
+		})();
+		
+		var DelSubMenuCommand = (function(){
+			function DelSubMenuCommand(){
+				
+			}
+			return DelSubMenuCommand;
+		})();
+		
+		var refreshMenuBarCommand = new RefreshMenuBarCommand(),
+			addSubMenuCommand = new AddSubMenuCommand(),
+			delSubMenuCommand = new DelSubMenuCommand();
+		
+		refreshMenuBarCommand.execute();
+		addSubMenuCommand.execute();
+		delSubMenuCommand.execute();
+	</script>
+</html>

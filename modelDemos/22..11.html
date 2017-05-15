@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>用return退出多重循环</title>
+	</head>
+	<body>
+	</body>
+	<script>
+//		var func = function(){
+//			var flag =false;
+//			for (var i =0;i<10;i++) {
+//				for(var j=0;j<10;j++){
+//					if(i*j >30){
+//						flag = true;
+//						break;
+//					}
+//				}
+//				if(flag === true){
+//					break;
+//				}
+//			}
+//		};
+//		var func = function(){
+//			for (var i =0;i<10;i++) {
+//				for(var j=0;j<10;j++){
+//					if(i*j >30){
+//						return
+//					}
+//				}
+//			}
+//			console.log(i);
+//		};
+		
+		var print = function(i){
+			console.log(i);
+		};
+		var func = function(){
+			for (var i =0;i<10;i++) {
+				for(var j=0;j<10;j++){
+					if(i*j >30){
+						return print(i);
+					}
+				}
+			}
+		};
+		func();
+	</script>
+</html>

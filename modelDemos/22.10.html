@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>代码重构---分解大类型</title>
+	</head>
+	<body>
+	</body>
+	<script>
+//		var Spirit = function(name){
+//			this.name = name;
+//		};
+//		
+//		Spirit.prototype.attack = function(type){   //攻击
+//			if(type === 'waveBoxing'){
+//				console.log(this.name + ':使用波动拳');
+//			}else if(type === 'whirlkick'){
+//				console.log(this.name + ':使用旋风腿');
+//			}
+//		};
+//		
+//		var spirit = new Spirit('RYU');
+//		
+//		spirit.attack('waveBoxing');
+//		spirit.attack('whirlkick');
+		
+		
+		/*****************************************************************/
+		
+		var Attack = function(spirit){
+			this.spirit = spirit;
+		};
+		
+		Attack.prototype.start = function(type){
+			return (this.list[ type ]).call(this);
+		};
+		
+		Attack.prototype.list = {
+			waveBoxing: function(){
+				console.log(this.spirit.name + ':使用波动拳');
+			},
+			whirlKick: function(){
+				console.log(this.spirit.name + ':使用旋风腿');
+			}
+		};
+		
+		var Spirit = function(name){
+			this.name = name;
+			this.attackObj = new Attack(this);
+		};
+		
+		Spirit.prototype.attack = function(type){
+			this.attackObj.start(type);
+		};
+		
+		var spirit = new Spirit('RYU');
+		
+		spirit.attack('waveBoxing');
+		spirit.attack('whirlKick');
+	</script>
+</html>
