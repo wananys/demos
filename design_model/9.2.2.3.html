@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		var testModule = (function(){
+			var counter = 0;
+			return {
+				incrementCounter: function(){
+					return ++counter; 
+				},
+				resetCounter: function(){
+					console.log("counter value prior to reset:"+ counter);
+					counter = 0;
+				}
+			};
+		})();
+		
+		//用法
+		//增加计数器
+		testModule.incrementCounter();
+		
+		//检查计数器值并充值
+		testModule.resetCounter();
+		
+		
+		
+		
+		//一个包含命名空间、公有和私有变量的Module模式
+		var myNamespace = (function(){
+			//私有计数器变量
+			var myPrivateVar = 0;
+			
+			//记录所有参数的私有函数
+			var myprivateMethod = function(foo){
+				console.log(foo);
+			};
+			return {
+				//公有变量
+				myPublicVar:"foo",
+				
+				//调用私有变量和方法的公有函数
+				myPublicFunction: function(bar){
+					//增加私有计数器值
+					myPrivateVar++;
+					
+					//传入bar调用私有方法
+					myprivateMethod(bar);
+				}
+			}
+		})();
+		
+		
+		
+		
+		
+		var basketModule = (function(){
+			//私有
+			
+			var basket = [];
+			function doSomethingPrivate(){
+				//...
+			}
+			
+			function doSomethingElsePrivate(){
+				//...
+			}
+			
+			//返回一个暴露出的公有对象
+			return {
+				//添加item到购物车
+				addItem: function(values){
+					basket.push(values);
+				},
+				
+				//获取购物车里的item数
+				getItemCount: function(){
+					return basket.length;
+				},
+				
+				//私有函数的公有形式别名
+				doSomething: doSomethingPrivate,
+				
+				//获取购物车里所有item的价格总值
+				getTotal: function(){
+					var itemCount = this.getItemCount(),
+						total = 0;
+					while(itemCount--){
+						total+=basket[itemCount].price;
+					}
+					return total;
+				}
+			};
+		})();
+		
+		//basketModule返回了一个拥有公用API的对象
+		basketModule.addItem({
+			item: "bread",
+			price: 0.5
+		});
+		
+		basketModule.addItem({
+			item: "butter",
+			price: 0.3
+		});
+		console.log(basketModule.getItemCount());   //输出2
+		console.log(basketModule.getTotal());   //输出0.8
+		
+	</script>
+</html>

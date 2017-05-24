@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>对象字面量</title>
+	</head>
+	<body>
+	</body>
+	<script>
+		var myModule = {
+			myProperty: "someValue",
+			
+			//对象字面量可以包含属性和方法
+			//例如，可以声明模块的配置对象
+			myConfig: {
+				language: "en",
+				useCaching: true
+			},
+			//基本方法
+			myMethod: function(){
+				console.log("where in the world is Paul Irish today?");
+			},
+			
+			//根据当前配置输出信息
+			myMethod2: function(){
+				console.log("Caching is:"+(this.myConfig.useCaching)?"enabled":"disabled");
+			},
+			//重写当前配置
+			myMethod3:function(newConfig){
+				if(typeof newConfig === "object"){
+					this.myConfig = newConfig;
+					console.log(this.myConfig.language);
+				}
+			}
+		};
+		
+		//输出：
+		myModule.myMethod();
+		
+		myModule.myMethod2();
+		
+		myModule.myMethod3({
+			language: "fr",
+			useCaching: false
+		});
+	</script>
+</html>

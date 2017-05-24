@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>基本Constructor（构造器）</title>
+	</head>
+	<body>
+	</body>
+	<script>
+		function Car(model,year,miles){
+			this.model = model;
+			this.year = year;
+			this.miles = miles;
+			
+//			this.toString = function(){
+//				return this.model + ' has done ' + this.miles + ' miles' ;
+//			};
+			
+			//注意我们这里使用Object.prototype.newMethod而不是Object.prototype是为避免重新定义prototype
+			Car.prototype.toString = function(){
+				return this.model + ' has done ' + this.miles + ' miles' ;
+			}
+		}
+		
+		//用法
+		//可以创建car的新实例
+		var civic = new Car('Honda Civic',1009,20000);
+		var mondeo = new Car("Ford Mondeo",2010,5000);
+		
+		//打开浏览器控制台，查看这些对象上调用的tostring()方法的输出
+		console.log(civic.toString());
+		console.log(mondeo.toString());
+	</script>
+</html>

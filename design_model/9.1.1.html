@@ -57,5 +57,17 @@
 			}
 		});
 		
+		//用法
+		//创建塞车司机driver对象，继承于person对象
+		var driver = Object.create(person);
+		//为driver设置一些属性
+		defineProp(driver,'topSpeed','100mph');
+		
+		//获取继承的属性
+		console.log(driver.dateOfBrith);
+		
+		//获取我们设置的100mph的属性
+		console.log(driver.topSpeed);
+		
 	</script>
 </html>
