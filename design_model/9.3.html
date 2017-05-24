@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		var myRevealingModule = function(){
+			var privateVar = "Ben Cherry",
+				publicVar = "Hey there!";
+			
+			function privateFunction(){
+				console.log("Name:"+privateVar);
+			}
+			
+			function publicSetName(strName){
+				privateName = strName;
+			}
+			
+			function publicGetName(){
+				privateFunction();
+			}
+			
+			//将暴露的公有指针指向到私有函数和属性上
+			return {
+				setName: publicSetName,
+				greeting: publicVar,
+				getName: publicGetName
+			};
+		}();
+		myRevealingModule.setName("Paul Kinlan");
+		
+		
+	</script>
+</html>

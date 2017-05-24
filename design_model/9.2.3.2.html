@@ -6,4 +6,22 @@
 	</head>
 	<body>
 	</body>
+	<script>
+		//全局模块
+		var myModule = (function(){
+			//模块对象
+			var module = {},
+				privateVariable = "Hello World";
+			function privateMethod(){
+				//...
+			}
+			
+			module.publicProperty = "Foobar";
+			module.puclicMethod = function(){
+				console.log(privateVariable);
+			};
+			
+			return module;
+		})();
+	</script>
 </html>

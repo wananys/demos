@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		var myRevealingModule = function(){
+			var privateCounter =0;
+			
+			function privateFunction(){
+				privateCounter++;
+			}
+			
+			function publicFunction(){
+				publicIncrement();
+			}
+			
+			function publicIncrement(){
+				privateFunction();
+			}
+			
+			function publicGetCount(){
+				return privateCounter;
+			}
+			
+			//将暴露的公有指针指向到私有函数和属性上
+			
+			return {
+				start: publicFunction,
+				increment: publicIncrement,
+				count: publicGetCount
+			};
+		}();
+		
+		myRevealingModule.start();
+	</script>
+</html>

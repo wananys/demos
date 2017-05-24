@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>dojo</title>
+	</head>
+	<body>
+	</body>
+	<script>
+		var store = window.store || {};
+		if(!store["basket"]){
+			store.basket = {};
+		}
+		
+		if(!store.basket["core"]){
+			store.basket.core = {};
+		}
+		
+		store.basket.core = {
+			//剩余逻辑
+		};
+		
+		//使用Dojo 1.7(AMD兼容的版本)和上述方法，如下所示
+		require(["dojo/_base/customeStore"],function(){
+			//使用dojo。setObject()
+			store.setObject("basket.core",(function(){
+				var basket = [];
+				function privateMethod(){
+					console.log(basket);
+				}
+				return {
+					publicmethod: function(){
+						privateMethod();
+					}
+				};
+			})());
+		});
+	</script>
+</html>

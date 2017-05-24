@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>jQuery</title>
+	</head>
+	<body>
+	</body>
+	<script>
+		function library(module){
+			$(function(){
+				if(module.init){
+					module.init();
+				}
+			});
+			return module;
+		}
+		
+		var myLibrary = library(function(){
+			return {
+				init: function(){
+					//module implementation
+					//模块实现
+				}
+			};
+		})();
+	</script>
+</html>

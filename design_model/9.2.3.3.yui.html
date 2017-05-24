@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>YUI</title>
+	</head>
+	<body>
+	</body>
+	<script>
+		Y.namespace("store.basket") = (function(){
+			var myPrivateVar,myPrivateMethod;
+			
+			//私有变量
+			myPrivateVar = "I can be accessed only within Y.store.basket.";
+			
+			//私有方法
+			myPrivateMethod = function(){
+				Y.log(I can be accessed only from within YAHOO.store.basket);
+			}
+			
+			return {
+				myPuclicProperty: "I'm a puclic property.",
+				
+				myPublicMethod: funcstion(){
+					Y.log("I'm a puclic method.");
+					
+					//在basket里，可以访问到私有变量和方法
+					Y.log(myPrivateVar);
+					Y.log(myPrivateMethod);
+					
+					//myPublicMethod的原始作用域是store,所以可以使用this来访问公有成员
+					Y.log(this.myPuclicProperty);
+				}
+			}
+		})();
+	</script>
+</html>
