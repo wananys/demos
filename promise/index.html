@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		var start = new Date();
+		setTimeout(function(){
+			var end = new Date();
+			console.log("Time elapsed: ", end - start, "ms");
+		},500);
+		while(new Date - start < 1000){};
+		
+		var defer = function(){
+			var pending = [],value;
+			return {
+//				resolve: function(_value){
+//					value = _value;
+//					for (var i=0,ii=pending.length;i<ii;i++) {
+//						var callback = pending[i];
+//						callback(value);
+//					}
+//					pending = undefined;
+//				},
+				//加上状态判断
+				resolve: function(_value){
+					if(pending){
+						value = _value;
+						for (var i=0,ii=pending.length;i<ii;i++) {
+							var callback = pending[i];
+							callback(value);
+						}
+						pending = undefined;
+					}else{
+						throw new Error("A promise can only be resolved once.");
+					}
+					
+				},
+				then: function(callback){
+					if(pending){
+						pending.push(callback);
+					}else{
+						callback(value);
+					}
+				}
+			}
+		};
+		
+		//使用实例
+		var oneOneSecondLater = function(){
+			var result = defer();
+			setTimeout(function(){
+				result.resolve(1);
+			},1000);
+			return result;
+		};
+		
+//		oneOneSecondLater().then(callback);
+		
+		var isPromise = function(value){
+			return value && typeof value.then === "function";
+		};
+		
+		var defer = function(){
+			var pending = [],value;
+			return {
+				resolve: function(_value){
+					if(pending)
+					for (var i=0,ii=pending.length;i<ii;i++) {
+						var callback = pending[i];
+						callback(value);
+					}
+					pending = undefined;
+				},
+				promise:{
+					then: function(callback){
+						if(pending){
+							pending.push(callback);
+						}else{
+							callback(value);
+						}
+					}
+				}
+			};
+		};
+		var ref = function(value){
+			if(value && typeof value.then === "function")
+				return value;
+			return {
+				then: function(callback){
+					return ref(callback(value));
+				}
+			};
+		};
+		
+//		ref("step1").then(function(value){
+//			console.log(value);
+//			return 15;
+//		}).then(function(value){
+//			console.log(value);
+//		});
+		var defer = function(){
+			var pending = [],value;
+			return {
+				resolve: function(_value){
+					if(pending){
+						value = ref(_value);   
+						for(var i=0,ii=pending.length;i<ii;i++){
+							var callback = pending[i];
+							value.then(callback);
+						}
+						pending = undefined;
+					}
+				},
+				promise: {
+					then: function(_callback){
+						var result = defer();
+						var callback = function(value){
+							result.resolve(_callback(value));
+						};
+						if(pending){
+							pending.push(callback);
+						}else{
+							value.then(callback);
+						}
+						return result.promise;
+					}
+				}
+			};
+		};
+		
+		var reject = function(reason){
+			return {
+				then : function(callback,errback){
+					return ref(errback(reason));
+				}
+			};
+		};
+		
+		var defer = function(){
+			var pending = [],value;
+			return {
+				resolve: function(_value){
+					if(pending){
+						value = ref(_value);
+						for (var i=0,ii=pending.length;i<ii;i++) {
+							value.then.apply(value,pending[i]);
+						}
+						pending =undefined;
+					}
+				},
+				promise: {
+					then: function(_callback,_errback){
+						var result = defer();
+						_callback = _callback || function(value){
+							return value;
+						};
+						_errback = _errback || function(reason){
+							return reject(reason);
+						};
+						var callback = function(value){
+							result.resolve(_callback(value));
+						};
+						var errback = function(reason){
+							result.resolve(_errback(reason));
+						};
+						if(pending){
+							pending.push([callback,errback]);
+						}else{
+							value.then(callback,errback);
+						}
+						return result.promise;
+					}
+				}
+			};
+		};
+		
+		var defer1 =defer(),
+			promise1 = defer1.promise;
+		promise1.then(function(value){
+			console.log("1:value = ",value);
+			return reject("error happens");
+		}).then(function(value){
+			console.log("2:value = ", value);
+		}).then(null,function(reason){
+			console.log("3:reason = ",reason);
+		});
+		defer1.resolve(10);
+	</script>
+</html>
