@@ -46,5 +46,13 @@
 				addHtmlToPage(chapter.html);
 			});
 		},Promise.resolver());
+		
+		getJSON('story.json').then(function(story){
+			addHtmlToPage(story.heading);
+			
+			return story.chapterUrls.reduce(function(sequence, chapterUrl){
+				
+			})
+		})
 	</script>
 </html>

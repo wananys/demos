@@ -6,4 +6,12 @@
 	</head>
 	<body>
 	</body>
+	<script>
+		function *addGenerator(){
+			var i=0;
+			while(true){
+				i += yield i;
+			}
+		}
+	</script>
 </html>
