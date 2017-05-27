@@ -23,10 +23,28 @@
 			document.querySelector('.spinner').style.display = "none";
 		});
 		
+//		story.chapterUrls.forEach(function(chapterUrl){
+//			getJSON(chapterUrl).then(function(chapter){
+//				addHtmlToPage(chapter.html);
+//			});
+//		});
+		
+		var sequence = Promise.resolve();
+		
 		story.chapterUrls.forEach(function(chapterUrl){
-			getJSON(chapterUrl).then(function(chapter){
+			sequence = sequence.then(function(){
+				return getJSON(chapterUrl);
+			}).then(function(chapter){
 				addHtmlToPage(chapter.html);
 			});
 		});
+		
+		story.chapterUrls.reduce(function(sequence, chapterUrl){
+			return sequence.then(function(){
+				return getJSON(chapterUrl);
+			}).then(function(chapter){
+				addHtmlToPage(chapter.html);
+			});
+		},Promise.resolver());
 	</script>
 </html>
