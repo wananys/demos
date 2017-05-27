@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		function getJSON(url){
+			return get(url).then(JSON.parse).catch(function(err){
+				console.log("getJSON failed for",url,err);
+				throw err;
+			});
+		}
+		getJSON('story.json').then(function(story){
+			addHtmlToPage(story.heading);
+		}).then(function(){
+			addTextToPage("All done");
+		}).catch(function(err){
+			addTextToPage("Argn, broken:"+err.message);
+		}).then(function(){
+			document.querySelector('.spinner').style.display = "none";
+		});
+		
+		story.chapterUrls.forEach(function(chapterUrl){
+			getJSON(chapterUrl).then(function(chapter){
+				addHtmlToPage(chapter.html);
+			});
+		});
+	</script>
+</html>

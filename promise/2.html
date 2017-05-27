@@ -83,5 +83,80 @@
 		}).then(function(chapter){
 			console.log(chapter);
 		});
+		
+		get('story.json').then(function(response){
+			console.log("Success!", response);
+		},function(error){
+			console.log('Failed',error);
+		});
+		
+		get('story.json').then(function(response){
+			console.log("Success",response);
+		}).catch(function(error){
+			console.log("Failed",error);
+		});
+		get('story.json').then(function(response){
+			console.log("Success",response);
+		}).then(undefined,function(error){
+			console.log("Failed",error);
+		});
+		
+		asyncThing1().then(function(){
+			return asyncThing2();
+		}).then(function(){
+			return asyncThing3();
+		}).catch(function(err){
+			return asyncRecovery1();
+		}).then(function(){
+			return asyncThing4();
+		},function(err){
+			return asyncRecovery2();
+		}).catch(function(err){
+			console.log("Don't worry about it");
+		}).then(function(){
+			console.log("all done!");
+		});
+		
+		var jsonPromise = new promise(function(resolve,reject){
+			resolve(JSON.parse("This arn't JSON"));
+		});
+		
+		jsonPromise.then(function(data){
+			cosole.log("It worked!",data);
+		}).catch(function(err){
+			console.log("It failed!",err);
+		});
+		
+		get('/').then(JSON.parse).then(function(){
+			console.log("it worked!",data);
+		}).catch(function(err){
+			console.log("It failed",err);
+		});
+		
+		getJSON('story.json').then(function(story){
+			return getJSON(story.chapterUrls[0]);
+		}).then(function(chapter){
+			addHtmlToPage(chapter.html);
+		}).catch(function(){
+			addTextToPage('Failed to show chapter');
+		}).then(function(){
+			document.querySelector('.spinner').style.display = "none";
+		});
+		
+		try{
+			var story = getJSONSync('story.json');
+			var chapter1 = getJSONSync(story.chapterUrls[0]);
+			addHtmlToPage(chapter1.html);
+		}catch(e){
+			addTextToPage("Failed to show chapter");
+		}
+		document.querySelector('.spinner').style.display = "none";
+		
+		function getJSON(url){
+			return get(url).then(JSON.parse).catch(function(err){
+				console.log("getJSON failed for",url,err);
+				throw err;
+			});
+		}
 	</script>
 </html>
