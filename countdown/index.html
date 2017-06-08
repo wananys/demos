@@ -9,23 +9,81 @@
 	</body>
 	<script>
 //		(function(){
-//			var time =5;
-//			var p = document.getElementById('time');
+//			var time = 5;
+//			var p = document.getElementById("time");
 //			var set = setInterval(function(){
-//				time -- ;
+//				time --;
 //				p.innerHTML = time;
-//				if(time === 0){
+//				if(time == 0){
 //					p.innerHTML = '';
 //					clearInterval(set);
 //				}
 //			},1000);
-//		})();
+//		})()
 
 		window.onload = function(){
+			var res = leftPad(2,2,"0");
+			console.log(res);
+			showtime();
+			function addZero(i){
+				if(i<10){
+					i = "0" +i;
+				}
+				return i;
+			}
 			function showtime(){
 				var nowtime = new Date();
-				
+				var endtime = new Date("2017/06/08,20:20:20");
+				var lefttime = parseInt((endtime.getTime() - nowtime.getTime())/1000);
+				var d = parseInt(lefttime / (24*60*60));
+				var h = parseInt(lefttime / (60*60) % 24);
+				var m = parseInt(lefttime / 60 %60);
+				var s = parseInt(lefttime % 60);
+				h = addZero(h);
+				m = addZero(m);
+				s = addZero(s);
+				document.getElementById("time").innerHTML = "倒计时    "+ d + ':' + h +":"+m+":"+s;
+				if(lefttime <=0){
+					document.getElementById("time").innerHTML = "活动已结束";
+					return;
+				}
+				setTimeout(showtime, 1000);
 			}
 		}
+
+		//零补方法
+		function leftPad(i){
+			if(i < 10){
+				i = "0" +i;
+			}
+			return i;
+		}
+		
+		function leftPad(i){
+			return i <10? '0'+i:i+'';
+		}
+		function leftPad(){
+			var n = parseInt(n,10);
+			return n>0?n <=9?('0'+n):(n+''):"00";
+		}
+		function leftPad(n,len){
+			len = len||2;
+			var diff = len - n.length;
+			if(diff>0){
+				n=new Array(diff+1).join('0')+n;
+			}
+			return n;
+		}
+		function leftPad(str, len, ch){
+			str = String(str);
+			var i =-1;
+			if(!ch && ch !==0) ch = '';
+			len = len - str.length;
+			while(++i < len){
+				str = ch + str;
+			}
+			return str;
+		}
+		
 	</script>
 </html>
