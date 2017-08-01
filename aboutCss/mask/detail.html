@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+ 	<meta http-equiv="X-UA-Compatible" content="IE=edge">   
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<title>新手引导</title>
+	<link rel="stylesheet" href="css/sm-extend.min.css">
+	<link rel="stylesheet" href="css/common.css" />
+	<link rel="stylesheet" href="css/detail.css" />
+</head>
+<body>
+<div class="page" id="detail">
+	<div class="bg_cover"></div>
+ 	<!--我要出价new-->
+	<div class="view_wycj">
+ 		<div class="num_list">
+ 			<div class="pro">
+ 				<div class="cover"></div>
+ 				<div class="page">
+ 					<div class="output" id="output">
+ 						<ul>
+ 							<li>99</li>
+ 							<li>13</li>
+ 							<li>31</li>
+ 							<li>27</li>
+ 							<li>55</li>
+ 							<li>22</li>
+ 							<li>6</li>
+ 							<li>156</li>
+ 							<li>8</li>
+ 						</ul>
+ 						<div class="loadmore">
+ 							更多 &gt;
+ 						</div>
+ 					</div>
+ 				</div>
+ 			</div>
+ 		</div>
+ 		
+ 		<div class="tip">你需要多少个竞标价格？</div>
+ 		<div class="click_btn">
+ 			<ul>
+ 				<li data-num ="1">1个</li>
+ 				<li data-num ="5">5个</li>
+ 				<li data-num ="10">10个</li>
+ 				<li data-num ="100">100个</li>
+ 			</ul>
+ 		</div>
+ 		
+ 		<div class="my_coins">
+ 			剩余金币<font>0</font>个
+ 		</div>
+ 		
+ 		<div id="show_mynums">已出价&gt;</div>
+ 		
+    	<!--已出价记录-->
+	    <div class="my_nums">
+	    	<h5>我的出价记录</h5>
+	    	<p class="nums" id="my_price_list">
+				
+	    	</p>
+	    	<button class="close">关闭</button>
+	    </div>
+		
+		<div class="foot">
+			<div class="cancle" id="close_cj">取消</div>
+			<div class="confirm" id="confirm_price">确认</div>
+		</div>
+	</div>
+	<!--我要出价结束-->
+ 	
+	<!--成功或失败-->
+	<div class="com_model"  id="m_result">
+		<div class="share_tips com_hide"></div>
+		<div class="com_m_content">
+			<h5 class="com_m_title">我要出价</h5>
+			<i class="com_m_close"></i>
+			<div class="padding m_success">
+				<i class="icon_success icons"></i>
+				<p class="m_tips">出价成功，消耗<em id="cost_gold">1</em>金币。<br/><span></span></p>
+				<button class="com_btn_confirm active" id="price_on">继续出价</button>
+			</div>
+			<div class="padding m_error">
+				<i class="icon_error icons"></i>
+				<p class="m_tips">金币余额不足</p>
+				<a class="com_btn_confirm active" href="<?php echo url_link('User/pageRecharge');?>" external>金币充值</a>
+			</div>
+		</div>
+	</div>
+	
+	<!--新手引导-->
+	<div class="mask_cover com_hide" id="step1" >
+		<img src="icons/finger.png" class="finger"/>
+		<div class="kong_box">
+		    <span class="box_cor"></span>
+		    1金币出价1次 你要出价最低~
+		</div>
+	</div>
+	<div class="mask_cover com_hide" id="step2" >
+		<img src="icons/finger.png" class="finger"/>
+		<div class="kong_box">
+		    <span class="box_cor"></span>
+		    选择你要出价的次数
+		    <p>所有出价随机，100%公平公正</p>
+		</div>
+	</div>
+	<div class="mask_cover com_hide" id="step3" >
+		<img src="icons/finger.png" class="finger"/>
+		<img src="icons/mask_btn.png" class="mask_reload"/>
+		<div class="kong_box">
+		    <span class="box_cor"></span>
+		    这是你选的价格，价格越低越有机会中标
+		</div>
+		<div class="kong_box reload">
+		    <span class="box_cor"></span>
+		    点击重选~
+		</div>
+	</div>
+	
+	<div class="mask_cover com_hide" id="step4" >
+		<img src="icons/mask_btn.png" class="mask_reload"/>
+		<img src="icons/mask_ok.png" class="mask_ok"/>
+		<div class="kong_box">
+		    <span class="box_cor"></span>
+		    这是你选的价格，价格越低越有机会中标
+		</div>
+	</div>
+	<div class="com_model" id="step5" >
+		<div class="mask_price_ok">
+			<img src="images/code.jpg" class="mask_code"/>
+			<img src="images/price_ok.png" class="mask_bg"/>
+			<i class="icon mask_close"></i>
+		</div>
+	</div>
+	
+  <!-- 工具栏 -->
+   <nav class="bar bar-tab bar-flexbox">
+  	<a class="external me_home bar_flex" id="limit_url">
+      <span class="me_icon"></span>
+      <span>返回</span>
+    </a>
+    <button class="btn_price active" id="btn_my_price">我要出价</button>
+	<button class="btn_price tutorial">新手教程</button>
+  </nav>
+  
+</div>
+<script type='text/javascript' src='js/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='js/sm-extend.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='js/detail.js' charset='utf-8'></script>
+</body>
+</html>
