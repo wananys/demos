@@ -1,0 +1,59 @@
+page{
+  background: #f5f5fa;
+}
+.list{
+  background: #fff;
+  /*height: 200rpx;*/
+  box-sizing: border-box;
+  padding: 28rpx 0 0 0;
+  position: relative;
+  font-size: 14px;
+  color: #999999;
+  line-height: 1.5;
+  margin-top: 20rpx;
+}
+.logo{
+  width: 80rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  position: absolute;
+  left: 28rpx;
+  top: 40rpx;
+  text-align: center;
+  border-radius: 50%;
+}
+.logo.pay{
+  color: #09BB07;
+  border:1px solid #09BB07;
+}
+.logo.buy{
+  color: #6492FF;
+  border:1px solid #6492FF; 
+}
+.shop-name{
+  font-size: 16px;
+  color: #000000;
+  padding: 0 20rpx 0 144rpx;
+}
+.txt{
+  padding: 0 20rpx 0 144rpx;
+}
+.discribe{
+  color: #000;
+  line-height: 2.75;
+  position: relative;
+  overflow: hidden;
+  padding: 0 20rpx 0 144rpx;
+}
+.discribe::before{
+  position: absolute;
+  content: '';
+  height: 1rpx;
+  width: 200%;
+  background: #E5E5E5;
+  top: 0;
+  left: 20rpx;
+}
+.counts{
+  margin: 0 20rpx;
+}

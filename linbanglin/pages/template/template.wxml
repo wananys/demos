@@ -1,0 +1,23 @@
+
+<!-- 卡券列表 -->
+<template name="cardlist">
+	<view class="card-item" bindtap="clickCard" data-cardid="{{item.cardId}}" data-cardno ="{{item.cardNo}}">
+		<image src="{{item.cardImgSrc}}" class="card-bg"/>
+    	<view>{{item.cardName}}</view>
+    	<view class="price" wx:if="{{item.usableAmount}}">￥{{item.usableAmount}}</view>
+    	<view class="price" wx:elif="{{item.usableCount}}">{{item.usableCount}}次</view>
+  	</view>
+</template>
+
+<!-- 商家店铺列表 -->
+<template name="map-list" >
+<block wx:for = "{{jsonData.stores}}" wx:key ="cardId">
+  <view class="map-item">
+     <image src="../../images/cardbg.png" class="map-bg"/>
+    <view>{{item.storeName}}</view>
+    <view class="map-address"><image mode="aspectFit" src="../../images/address.png" class="icon-address"/>{{item.address}}</view>
+  </view>
+</block>
+</template>
+
+

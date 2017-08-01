@@ -1,0 +1,7 @@
+<template name="error"> 
+<view class="container" hidden="{{isError}}">
+  <image src="../../images/error.png" class="error"/>
+  <view class="error-tip">{{errorMsg}}</view>
+  <navigator open-type="navigateBack" class="error-btn">返回</navigator>
+</view>
+</template>

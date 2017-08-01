@@ -1,0 +1,4 @@
+<view >
+<image src="../../images/cardbg.png"/>
+<button class="share" open-type="share">分享给朋友</button>
+</view>

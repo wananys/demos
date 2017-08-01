@@ -1,0 +1,19 @@
+<import src="../template/error.wxml"/>
+<view class="list" wx:for = "{{jsonData}}" wx:key = "{{orderNo}}"  hidden="{{isNormal}}">
+  <view class="logo pay" wx:if="{{item.tradeType == '02'}}">支付</view>
+  <view class="logo buy" wx:if="{{item.tradeType == '01'}}">购卡</view>
+  <view class="shop-name">{{item.enterpriseName}}{{item.storeName}}</view>
+  <view class="txt">{{item.tradeTime}}</view>
+  <view class="txt">订单号：{{item.orderNo}}</view>
+  <view class="discribe">{{item.plusMinus}}{{item.tradeNum}}{{item.tradeUnit}}</view>
+</view>
+<view class="tips">
+  <view wx:if="{{ hasMore }}">
+    <text>{{apptips.loading}}</text>
+  </view>
+  <view wx:else>
+    <text>{{apptips.nomore}}</text>
+  </view>
+</view>
+<loading hidden="{{ !loading }}">{{apptips.loadingtoast}}</loading>
+<template is="error" data="{{isError,errorMsg}}"/>

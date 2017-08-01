@@ -1,0 +1,35 @@
+page{
+  background-color: #f5f5fa;
+  font-size:14px;
+}
+.shops-box{
+  padding: 0 20rpx 20rpx;
+}
+.shops-head{
+  line-height: 76rpx;
+  display: flex;
+  flex-direction:row;
+  -webkit-flex-direction:row;
+  background: #fff;
+  padding: 0 20rpx;
+  margin-bottom: 30rpx;
+}
+.padding-left{
+  padding-left: 10rpx;
+}
+.flex-item{
+  width: 50%;
+}
+.right{
+  text-align: right;
+}
+.card-item .amount{
+  position: absolute;
+  right: 50rpx;
+  top: 20rpx;
+  color: #fff;
+  font-size: 12px;
+}
+.card-item .amount text{
+  font-size: 18px;
+}

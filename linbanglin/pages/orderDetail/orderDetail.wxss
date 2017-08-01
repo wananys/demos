@@ -1,0 +1,30 @@
+page{
+  background: #f5f5fa;
+}
+.list{
+  background: #fff;
+  padding-left: 20rpx;
+  box-sizing: border-box;
+  margin-top: 30rpx;
+}
+.row{
+  display: flex;
+  flex-direction: row;
+  line-height: 100rpx;
+  font-size: 14px;
+  padding-right: 20rpx;
+  box-sizing: border-box;
+  border-bottom: 1rpx solid #E5E5E5;
+}
+.row:last-child{
+  border: 0;
+}
+.item{
+  width: 33.33%;
+}
+.center{
+  text-align: center;
+}
+.right{
+  text-align: right;
+}
