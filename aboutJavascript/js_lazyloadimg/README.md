@@ -11,7 +11,7 @@
 
 这样子对于页面加载性能上会有很大的提升，也提高了用户体验。
 
-效果展示：[demo-index](http://ihzen.com/demos/js_lazyloadimg)
+效果展示：[demo-index](http://htmlpreview.github.io/?https://github.com/wananys/myLearn/blob/master/aboutJavascript/js_lazyloadimg/index.html)
 
 >参考资料：
 >[懒加载——网页图片的加载技术](https://segmentfault.com/a/1190000003881643)

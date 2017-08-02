@@ -8,4 +8,4 @@
 >4.把onload中不是赋值的语句放到单独函数中
 >5.this指向问题
 
-效果展示：[demo](http://ihzen.com/demos/tab)
+效果展示：[demo](http://htmlpreview.github.io/?https://github.com/wananys/myLearn/blob/master/aboutJavascript/tab/index.html)
